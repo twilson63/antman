@@ -1,5 +1,7 @@
 import { Async } from 'crocks'
-import { filter, compose, startsWith, prop, map } from 'ramda'
+import { filter, compose, startsWith, prop, map, keys } from 'ramda'
+
+const ARNS_TEST = 'bLAgYxAdX2Ry-nt6aH2ixgvJXbpsEYm28NgJgyqfs-U'
 
 // @ts-ignore
 const { fromPromise, all } = Async
@@ -22,7 +24,13 @@ export default {
           startsWith('ANT'),
           prop('token_ticker')
         )))
-        .chain(antDetails)
+        .chain(antDetails),
+      getSubdomains: () => fromPromise(readState)(ARNS_TEST).map(
+        compose(
+          keys,
+          prop('records')
+        )
+      )
     })
   }
 }

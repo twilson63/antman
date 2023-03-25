@@ -9,7 +9,12 @@
 </script>
 
 {#if current === LOADING}
-  <div>Loading...</div>
+  <div class="grid items-center justify-center bg-[#f2f3f4] min-h-screen">
+    <img
+      src="https://arweave.net/IkMJRqi_0Xx_QhstK4WE3rsQqQxC07n84UagPgqGXfc"
+      alt="loading"
+    />
+  </div>
 {:else if current === READY}
   <div class="text-4xl">SubDomains</div>
   {#each context.ants as ant}
